@@ -1,33 +1,32 @@
+import 'package:chat_box/screens/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
-// import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class Login extends StatefulWidget {
 
   const Login({Key? key}) : super(key: key);
-
 
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-  // bool showSpinner = false;
 
-
-   late String _email, _password;
   final auth = FirebaseAuth.instance;
+  late String _email, _password;
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
+      appBar: AppBar
+        (backgroundColor: Colors.transparent,
+      elevation: 0,
       ),
       body: Column(
           children: [
+            SizedBox( height: 100.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
@@ -37,7 +36,7 @@ class _LoginState extends State<Login> {
                 onChanged: (value){
 
                   setState(() {
-                    _email = value.trim();
+                    _email = value;
                   });
                 },
 
@@ -52,7 +51,7 @@ class _LoginState extends State<Login> {
                 ),
                 onChanged: (value){
                   setState(() {
-                    _password = value.trim();
+                    _password = value;
                   });
                 },
 
@@ -61,29 +60,34 @@ class _LoginState extends State<Login> {
 
             SizedBox(height: 8,),
 
-            MaterialButton(onPressed: ()=>
-
-            {
-              auth.signInWithEmailAndPassword(email: _email, password: _password),
-              Navigator.push(context, MaterialPageRoute(builder: (context)
-              => HomeScreen()))
+            MaterialButton(onPressed: () async {
+              try {
+                final newuser = await auth.signInWithEmailAndPassword(
+                    email: _email, password: _password);
+                if(newuser !=  null)
+                {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)
+                  => HomeScreen()));
+                }
+              }
+              catch(e){
+                print(e);
+              }
             },
               minWidth: 400.0,
               height: 42.0,
               color: Colors.blueAccent,
-              child: Text("Sign In", style: TextStyle(
+              child: Text("Login", style: TextStyle(
                   color: Colors.white, fontSize: 17
               ),),
-
             ),
 
             SizedBox(height: 8,),
 
             MaterialButton(onPressed: ()=>
             {
-              auth.createUserWithEmailAndPassword(email: _email, password: _password),
               Navigator.push(context, MaterialPageRoute(builder: (context)
-              => HomeScreen()))
+              => SignUp()))
             },
               minWidth: 400.0,
               height: 42.0,
