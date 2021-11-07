@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'login_screen.dart';
 
 
@@ -21,12 +20,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset("images/chat3.jpg",
+            Image.asset("images/welcomeImage.png",
               height: 250,),
             SizedBox(height: 20,),
             Text('Welcome to the Chat Box',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 28),),
+              style: TextStyle(color: Colors.black54, fontSize: 28),),
             SizedBox(height: 30,),
             MaterialButton(
               elevation: 0,

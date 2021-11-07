@@ -126,7 +126,7 @@ class MessageStream extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          final messages = snapshot.data!.docs;
+          final messages = snapshot.data!.docs.reversed;
 
           List<MessageBubble> messageBubbles = [];
           for(var message in messages)
