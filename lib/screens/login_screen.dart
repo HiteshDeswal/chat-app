@@ -29,8 +29,11 @@ class _LoginState extends State<Login> {
       ),
       body: Column(
         children: [
+          // SizedBox(height: 100,
+          // child:   Image.asset("images/logooo.png"),
+          // ),
           SizedBox( height: 150.0),
-          Padding(
+        Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
                 key: _formkey,
@@ -56,6 +59,7 @@ class _LoginState extends State<Login> {
                       },
 
                     ),
+
                     TextFormField(
                       controller: passwordcontroller,
                       obscureText: true,
